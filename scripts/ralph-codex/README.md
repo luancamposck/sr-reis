@@ -11,6 +11,75 @@ It does not depend on Claude, `.claude/skills`, `CLAUDE.md`, or the upstream Ral
 3. Review the PRD JSON before starting the loop.
 4. Run one Codex story iteration or a bounded loop.
 
+## Recommended Codex-first workflow
+
+1. Open the repository inside the devcontainer.
+2. Verify the scaffold:
+
+   ```bash
+   RALPH_ALLOW_PLACEHOLDER=1 bash scripts/ralph-codex/bin/doctor.sh
+   ```
+
+3. Use the `create-prd` skill to create a PRD under `tasks/`.
+4. Use the `convert-prd-to-ralph-json` skill to create `scripts/ralph-codex/state/prd.json`.
+5. Use the `review-ralph-prd` skill to review/refine `prd.json`.
+6. Validate the real PRD:
+
+   ```bash
+   bash scripts/ralph-codex/bin/doctor.sh
+   ```
+
+7. Run one story first:
+
+   ```bash
+   bash scripts/ralph-codex/bin/run-once.sh
+   ```
+
+8. Only after one successful story, run a bounded loop:
+
+   ```bash
+   bash scripts/ralph-codex/bin/loop.sh 3
+   ```
+
+Do not run `run-once.sh` or `loop.sh` with the placeholder PRD.
+
+## Agent Skills
+
+Codex skills live under:
+
+```txt
+.agents/skills/
+```
+
+The skills provide the human-facing workflow:
+
+- `create-prd`
+- `convert-prd-to-ralph-json`
+- `review-ralph-prd`
+
+The detailed prompt contracts remain under:
+
+```txt
+scripts/ralph-codex/prompts/
+```
+
+The loop itself remains a shell-script workflow, not a skill.
+
+## Devcontainer
+
+The devcontainer is the recommended place to run Codex with high autonomy.
+
+It provides:
+
+- Node 20
+- Codex CLI
+- git/gh/jq/network tooling
+- persistent `/home/node/.codex`
+- firewall-based egress restrictions
+- `/workspace` bind mount for the repository
+
+The container reduces blast radius, but it does not protect the mounted repository from changes. Always work on a branch and keep commits small.
+
 ## Commands
 
 Check the local Ralph Codex setup:

@@ -27,9 +27,9 @@ Steps:
 5. Implement only the selected story.
 6. Keep changes focused.
 7. Run required checks.
-8. Commit all changes for that story.
-9. Update the selected story in `prd.json` to `"passes": true`.
-10. Append a progress entry to `progress.txt`.
+8. Update the selected story in `prd.json` to `"passes": true`.
+9. Append a progress entry to `progress.txt`.
+10. Commit all changes for that story, including code changes, `prd.json`, and `progress.txt`.
 
 ## Quality gate
 
@@ -91,6 +91,9 @@ Do not add `Co-Authored-By`.
 - Do not modify Ralph Codex prompts unless the selected story explicitly requires it.
 - Do not work on more than one story.
 - Do not mark a story as passed unless checks passed.
+- Do not leave `prd.json` or `progress.txt` uncommitted after marking a story as passed.
+- The final git working tree must be clean.
+- Commit code changes, `prd.json`, and `progress.txt` together in the same story commit.
 - Do not commit broken code.
 - Do not commit secrets.
 - Do not reset remote databases.

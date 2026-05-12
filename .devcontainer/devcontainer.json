@@ -36,7 +36,16 @@
       "settings": {
         "editor.formatOnSave": true,
         "editor.defaultFormatter": "biomejs.biome",
-        "terminal.integrated.defaultProfile.linux": "fish"
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "bash",
+            "icon": "terminal-bash"
+          },
+          "zsh": {
+            "path": "zsh"
+          }
+        }
       }
     }
   }
