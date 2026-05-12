@@ -28,4 +28,18 @@ ralph_validate_prd "$RALPH_DIR/state/prd.json" || {
   exit 1
 }
 
+BRANCH_NAME="$(jq -r '.branchName' "$RALPH_DIR/state/prd.json")"
+DESCRIPTION="$(jq -r '.description' "$RALPH_DIR/state/prd.json")"
+
+if [ "$BRANCH_NAME" = "ralph/example-feature" ] || printf "%s" "$DESCRIPTION" | grep -qi "placeholder"; then
+  if [ "${RALPH_ALLOW_PLACEHOLDER:-}" = "1" ]; then
+    log_warn "state/prd.json still contains the placeholder PRD"
+    log_warn "Continuing because RALPH_ALLOW_PLACEHOLDER=1"
+  else
+    log_error "state/prd.json still contains the placeholder PRD"
+    log_error "Replace it with a real PRD before running Ralph Codex"
+    exit 1
+  fi
+fi
+
 log_success "Ralph Codex environment looks ready"

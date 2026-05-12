@@ -13,6 +13,8 @@ source "$RALPH_DIR/lib/json.sh"
 source "$RALPH_DIR/lib/git.sh"
 # shellcheck source=/dev/null
 source "$RALPH_DIR/lib/codex.sh"
+# shellcheck source=/dev/null
+source "$RALPH_DIR/lib/checks.sh"
 
 PRD_FILE="$RALPH_DIR/state/prd.json"
 PROGRESS_FILE="$RALPH_DIR/state/progress.txt"
@@ -43,6 +45,16 @@ log_info "Running Codex for next story: $NEXT_STORY"
 
 if ! ralph_codex_command "$REPO_ROOT" "$PROMPT_FILE" "$LAST_MESSAGE_FILE"; then
   log_error "Codex execution failed"
+  exit 1
+fi
+
+log_info "Running Ralph quality checks"
+ralph_default_checks
+
+if ralph_has_changes; then
+  log_error "Quality checks left uncommitted changes"
+  log_error "Commit or fix those changes before continuing"
+  git status --short
   exit 1
 fi
 

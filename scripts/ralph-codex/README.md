@@ -19,11 +19,19 @@ Check the local Ralph Codex setup:
 scripts/ralph-codex/bin/doctor.sh
 ```
 
+`doctor.sh` fails while `scripts/ralph-codex/state/prd.json` still contains the placeholder PRD. For scaffold-only diagnostics before a real PRD exists, run:
+
+```bash
+RALPH_ALLOW_PLACEHOLDER=1 scripts/ralph-codex/bin/doctor.sh
+```
+
 Run exactly one story:
 
 ```bash
 scripts/ralph-codex/bin/run-once.sh
 ```
+
+`run-once.sh` runs the default quality checks after Codex returns as a safety net. If formatting, linting, or typecheck fails, or if those checks leave uncommitted changes, the script fails loudly.
 
 Run up to 10 story iterations:
 
@@ -74,6 +82,12 @@ The loop persists memory through:
 
 `prd.json` and `progress.txt` are versioned on purpose. Runtime files such as `.last-message`, `.last-branch`, and archived runs are ignored.
 
+## Design source
+
+The original setup/design prompt is preserved at:
+
+- `scripts/ralph-codex/docs/setup-source.md`
+
 ## Notes
 
-Do not run `loop.sh` with the placeholder PRD. Replace `scripts/ralph-codex/state/prd.json` with a real PRD first.
+Do not run `run-once.sh` or `loop.sh` while the placeholder PRD is active. Replace `scripts/ralph-codex/state/prd.json` with a real PRD first.
