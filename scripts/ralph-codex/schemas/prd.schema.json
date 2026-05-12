@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ralph Codex PRD",
+  "type": "object",
+  "required": ["project", "branchName", "description", "userStories"],
+  "properties": {
+    "project": {
+      "type": "string"
+    },
+    "branchName": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "userStories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "description",
+          "acceptanceCriteria",
+          "priority",
+          "passes"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "acceptanceCriteria": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "priority": {
+            "type": "integer"
+          },
+          "passes": {
+            "type": "boolean"
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

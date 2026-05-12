@@ -1,0 +1,19 @@
+[features]
+rmcp_client = true
+
+[mcp_servers.filesystem]
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-filesystem", "."]
+startup_timeout_sec = 30
+
+# Supabase MCP can be enabled later when the project ref is confirmed.
+# Keep credentials and secrets out of this file.
+#
+# [mcp_servers.supabase]
+# url = "https://mcp.supabase.com/mcp?project_ref=<project-ref>&read_only=true&features=database%2Cdevelopment%2Cfunctions%2Cstorage%2Cdocs"
+# startup_timeout_sec = 30
+
+[mcp_servers.shadcn]
+command = "npx"
+args = ["shadcn@latest", "mcp"]
+startup_timeout_sec = 30

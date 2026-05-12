@@ -1,0 +1,13 @@
+# Ralph Codex Progress Log
+Started: not started
+PRD: placeholder
+
+---
+
+## Codebase Patterns
+
+- Read root AGENTS.md before every iteration.
+- This repository is a monorepo. Prefer root pnpm scripts and package filters instead of inventing commands.
+- Keep Ralph Codex operational prompts under scripts/ralph-codex/prompts, not in AGENTS.md.
+
+---

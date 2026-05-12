@@ -1,0 +1,20 @@
+{
+  "project": "sr-reis",
+  "branchName": "ralph/example-feature",
+  "description": "Placeholder PRD for Ralph Codex. Replace this file before running a real loop.",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Replace placeholder PRD",
+      "description": "As a developer, I need to replace the placeholder PRD before running Ralph so that the loop has real work to execute.",
+      "acceptanceCriteria": [
+        "Replace scripts/ralph-codex/state/prd.json with a real PRD generated from tasks/prd-[feature-name].md",
+        "Set every new story passes field to false",
+        "Keep each story small enough for one focused Codex iteration"
+      ],
+      "priority": 1,
+      "passes": false,
+      "notes": ""
+    }
+  ]
+}

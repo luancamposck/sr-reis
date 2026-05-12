@@ -37,3 +37,8 @@ Thumbs.db
 
 # Supabase local temp
 supabase/.temp/
+
+# Ralph Codex local runtime
+scripts/ralph-codex/state/.last-message
+scripts/ralph-codex/state/.last-branch
+scripts/ralph-codex/archive/
